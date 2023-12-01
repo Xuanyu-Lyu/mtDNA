@@ -1,5 +1,4 @@
-RunSim_rd <- function(Var, kpc, Ngen, sexR, marR, n=10000, path_results){
-    source("~/R-Project/mtDNA_mt2/Functions/HelperFunctions.R")
+RunSim_rd <- function(Var, kpc, Ngen, sexR, marR, n=5000, path_results){
     library(OpenMx)
     library(mvtnorm)
     #Var Comb
@@ -106,6 +105,34 @@ RunSim_rd <- function(Var, kpc, Ngen, sexR, marR, n=10000, path_results){
                                      mxExpectationNormal(covariance='V', means='M'), 
                                      mxFitFunctionML()
         )
+        
+        
+        ytemp3 <- paste('S', rownames (Addmat))
+        fsize3 <- nrow(Addmat)
+        modList3[[i]] <- mxModel(name=modNames3[i],
+                                     mxMatrix("Iden", nrow=fsize3, ncol=fsize3, name="I"), 
+                                     #mxMatrix("Unit", nrow=fsize3, ncol=fsize3, name='U'),
+                                     #mxMatrix("Symm", nrow=fsize3, ncol=fsize3, values=Addmat, name="A"), 
+                                     #mxMatrix("Symm", nrow=fsize3, ncol=fsize3, values=Dmgmat, name="D"), 
+                                     #mxMatrix("Symm", nrow=fsize3, ncol=fsize3, values=Nucmat, name="Cn"), 
+                                     #mxMatrix("Symm", nrow=fsize3, ncol=fsize3, values=Extmat, name="Ce"), 
+                                     #mxMatrix("Symm", nrow=fsize3, ncol=fsize3, values=Amimat, name="Am"), 
+                                     mxMatrix("Symm", nrow=fsize3, ncol=fsize3, values=Mtdmat, name="Mt"),
+                                     mxData(observed = matrix(temp, nrow=1, dimnames=list(NULL, ytemp3)), type="raw", sort=FALSE),
+                                     mxMatrix('Full', nrow=1, ncol=fsize3, name='M', free=TRUE, labels='meanLI',
+                                              dimnames=list(NULL, ytemp3)),
+                                     mxAlgebra (#(A %x% ModelThree.Vad) 
+                                                #+ (D %x% ModelThree.Vdd) 
+                                                # + (Cn %x% ModelThree.Vcn) 
+                                                #+ (U %x% ModelThree.Vce) 
+                                                 (Mt %x% ModelThree.Vmt) 
+                                                #+ (Am %x% ModelThree.Vam) 
+                                                + (I %x% ModelThree.Ver), 
+                                                name="V", dimnames=list(ytemp3, ytemp3)),
+                                     mxExpectationNormal(covariance='V', means='M'), 
+                                     mxFitFunctionML()
+        )
+        
 
     }
     
@@ -141,7 +168,7 @@ RunSim_rd <- function(Var, kpc, Ngen, sexR, marR, n=10000, path_results){
     #### Model excluding mt and am
     
     Model2a <- mxModel(
-        "ModelThree",
+        "ModelTwo",
         mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ad2*totalVar, labels = "vad", name = "Vad", lbound = 1e-10),
         #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = dd2*totalVar, labels = "vdd", name = "Vdd", lbound = 1e-10),
         #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = cn2*totalVar, labels = "vcn", name = "Vcn", lbound = 1e-10),
@@ -158,10 +185,32 @@ RunSim_rd <- function(Var, kpc, Ngen, sexR, marR, n=10000, path_results){
     smr2 <- summary(containerRun2)
     #return(smr1)
     
-     save(list = ls(envir = environment()), file = paste0(path_results,"/model2.RData"), envir = environment())
-     
-     
-     rm(list = setdiff(ls(), c("path_results","smr1", "smr2")))
+    save(list = ls(envir = environment()), file = paste0(path_results,"/model2.RData"), envir = environment())
+
+    rm(list = setdiff(ls(), c("path_results","smr1", "smr2")))
+    #### Model excluding mt and am
+    
+    Model3a <- mxModel(
+        "ModelThree",
+        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ad2*totalVar, labels = "vad", name = "Vad", lbound = 1e-10),
+        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = dd2*totalVar, labels = "vdd", name = "Vdd", lbound = 1e-10),
+        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = cn2*totalVar, labels = "vcn", name = "Vcn", lbound = 1e-10),
+        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ce2*totalVar, labels = "vce", name = "Vce", lbound = 1e-10),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = mt2*totalVar, labels = "vmt", name = "Vmt", lbound = 1e-10),
+        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = am2*totalVar, labels = "vam", name = "Vam", lbound = 1e-10),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ee2*totalVar, labels = "ver", name = "Ver", lbound = 1e-10)
+    )
+    
+    container3 <- mxModel('Model2b', Model3a, modList3, mxFitFunctionMultigroup(modNames3))
+    container3 <- mxOption(container3, 'Checkpoint Units', 'minutes')
+    container3 <- mxOption(container3, 'Checkpoint Count', 1)
+    containerRun3 <- mxRun(container3, intervals=FALSE, checkpoint=TRUE) 
+    smr3 <- summary(containerRun3)
+    #return(smr1)
+    
+    save(list = ls(envir = environment()), file = paste0(path_results,"/model3.RData"), envir = environment())
+
+    rm(list = setdiff(ls(), c("path_results","smr1", "smr2", "smr3")))
      
      save(list = ls(envir = environment()), file = paste0(path_results,"/modelSmr.RData"), envir = environment())
  
