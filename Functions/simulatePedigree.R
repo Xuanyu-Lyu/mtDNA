@@ -352,7 +352,10 @@ simulatePedigree <- function(kpc = 3,
         } else {
            random_numbers <- rep(kpc, sum(df_Ngen$ifparent)/2)
         }
-          
+        if (min(random_numbers) < 0) {
+          random_numbers[random_numbers == -1] <- 0
+          random_numbers[random_numbers == max(random_numbers)] <- max(random_numbers) - 1
+        }
 
         #cat("final random numbers",random_numbers, "\n")
         #cat("mean",sum(random_numbers)/length(random_numbers), "\n")

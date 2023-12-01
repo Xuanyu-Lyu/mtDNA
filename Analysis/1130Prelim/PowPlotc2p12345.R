@@ -6,8 +6,11 @@ powerCal <- function(lamda,df){
 }
 my_palette <- c( "#E41A1C", "#332288", "#E69F00", "#DDCC77", "#377EB8",  "#4DAF4A", "#117A65", "#56B4E9", "#A6CE39", "#A9A9A9","#88CCEE", "#CC6677",  "#AA4499",   "#999933", "#882255", "#984EA3")
 n = 10000
-relativePath = "C:/Users/lxy75/OneDrive/Documents/R-Project/mtDNA/Data/1130Prelim"
-relativePath_save = "C:/Users/lxy75/OneDrive/Documents/R-Project/mtDNA/Analysis/1130Prelim"
+#relativePath = "C:/Users/lxy75/OneDrive/Documents/R-Project/mtDNA/Data/1130Prelim"
+#relativePath_save = "C:/Users/lxy75/OneDrive/Documents/R-Project/mtDNA/Analysis/1130Prelim"
+
+relativePath = "/Users/lyux20/Library/CloudStorage/OneDrive-UCB-O365/Documents/mtDNA/mtDNA/Data/1130Prelim"
+relativePath_save = "/Users/lyux20/Library/CloudStorage/OneDrive-UCB-O365/Documents/mtDNA/mtDNA/Analysis/1130Prelim"
 
 ### create a new enviroment for one condition
 env_c2p1 <- new.env()
@@ -103,8 +106,8 @@ g1 <-ggplot(data = df_c2)+ geom_line(mapping = aes(x = Nped, y = power, color= C
                          labels=c("k = 3, G = 4, m = 33",
                                   "k = 4, G = 4, m = 61", 
                                   "k = 8, G = 4, m = 344",
-                                  "k = 3, G = 6, m = 657",
-                                  "k = 3, G = 8, m = 388")
+                                  "k = 3, G = 6, m = 388",
+                                  "k = 3, G = 8, m = 657")
       )+
       theme(panel.background = element_rect(fill = "transparent"),
             panel.grid = element_line(color = "transparent"),
