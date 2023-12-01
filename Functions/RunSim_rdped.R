@@ -1,4 +1,4 @@
-RunSim_rd <- function(Var, kpc, Ngen, sexR, marR, n=5000, path_results){
+RunSim_rd <- function(Var, kpc, Ngen, sexR, marR, n=10000, path_results){
     library(OpenMx)
     library(mvtnorm)
     #Var Comb
@@ -21,14 +21,17 @@ RunSim_rd <- function(Var, kpc, Ngen, sexR, marR, n=5000, path_results){
     modList2 <- list()
     modNames2 <- paste0("fam", 1:numfam)
     
+    modList3 <- list()
+    modNames3 <- paste0("fam", 1:numfam)
     dat <- data.frame()
     
     for(i in 1: numfam){
         set.seed(i*11)
-        ped_temp <- SimPed(kpc = kpc,
-                           Ngen = Ngen,
-                           sexR = sexR,
-                           marR = marR)
+        ped_temp <- simulatePedigree(kpc = kpc,
+                                     Ngen = Ngen,
+                                     sexR = sexR,
+                                     marR = marR,
+                                     rd_kpc = TRUE)
         assign(paste0("ped",i),
                ped_temp)
         p.list[[i]] <- ped_temp
@@ -94,13 +97,13 @@ RunSim_rd <- function(Var, kpc, Ngen, sexR, marR, n=5000, path_results){
                                      mxData(observed = matrix(temp, nrow=1, dimnames=list(NULL, ytemp2)), type="raw", sort=FALSE),
                                      mxMatrix('Full', nrow=1, ncol=fsize2, name='M', free=TRUE, labels='meanLI',
                                               dimnames=list(NULL, ytemp2)),
-                                     mxAlgebra ((A %x% ModelThree.Vad) 
+                                     mxAlgebra ((A %x% ModelTwo.Vad) 
                                                 #+ (D %x% ModelThree.Vdd) 
                                                 # + (Cn %x% ModelThree.Vcn) 
                                                 #+ (U %x% ModelThree.Vce) 
                                                 #+ (Mt %x% ModelThree.Vmt) 
                                                 #+ (Am %x% ModelThree.Vam) 
-                                                + (I %x% ModelThree.Ver), 
+                                                + (I %x% ModelTwo.Ver), 
                                                 name="V", dimnames=list(ytemp2, ytemp2)),
                                      mxExpectationNormal(covariance='V', means='M'), 
                                      mxFitFunctionML()
@@ -187,7 +190,7 @@ RunSim_rd <- function(Var, kpc, Ngen, sexR, marR, n=5000, path_results){
     
     save(list = ls(envir = environment()), file = paste0(path_results,"/model2.RData"), envir = environment())
 
-    rm(list = setdiff(ls(), c("path_results","smr1", "smr2")))
+    rm(list = setdiff(ls(), c(ObjectsKeep, "ObjectsKeep","path_results","smr1", "smr2")))
     #### Model excluding mt and am
     
     Model3a <- mxModel(
@@ -201,7 +204,7 @@ RunSim_rd <- function(Var, kpc, Ngen, sexR, marR, n=5000, path_results){
         mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ee2*totalVar, labels = "ver", name = "Ver", lbound = 1e-10)
     )
     
-    container3 <- mxModel('Model2b', Model3a, modList3, mxFitFunctionMultigroup(modNames3))
+    container3 <- mxModel('Model3b', Model3a, modList3, mxFitFunctionMultigroup(modNames3))
     container3 <- mxOption(container3, 'Checkpoint Units', 'minutes')
     container3 <- mxOption(container3, 'Checkpoint Count', 1)
     containerRun3 <- mxRun(container3, intervals=FALSE, checkpoint=TRUE) 
