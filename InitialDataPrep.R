@@ -12,7 +12,7 @@ for(script in r_scripts) {
 df_ped <- read.csv(paste0(path_base, "Pedigrees_a2mt2.csv"))
 df_var <- read.csv(paste0(path_base, "VarianceComb_a2mt2.csv"))
 
-set.seed(62)
+# set.seed(62)
 
 # l_ped <- list()
 # for(i in 1: nrow(df_ped)){
@@ -28,3 +28,4 @@ set.seed(62)
 
 
 #save.image("~/R-Project/mtDNA_mt2/InitialData/FixedPedVar.RData")
+

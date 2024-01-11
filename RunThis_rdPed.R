@@ -2,11 +2,11 @@
 #source("C:/Users/lxy75/OneDrive/Documents/R-Project/mtDNA/InitialDataPrep.R")
 source("/Users/lyux20/Library/CloudStorage/OneDrive-UCB-O365/Documents/mtDNA/mtDNA/InitialDataPrep.R")
 
-for (i in 1:3){
-    for(j in 1:5){
+for (i in 1:1){
+    for(j in 7:11){
         print(Sys.time())
         cat(paste("start c",i,"p",j, "\n"))
-        target_folder <- paste0("/Users/lyux20/Library/CloudStorage/OneDrive-UCB-O365/Documents/mtDNA/mtDNA/Data/1130Prelim","/","c",i,"p",j) 
+        target_folder <- paste0("/Users/lyux20/Library/CloudStorage/OneDrive-UCB-O365/Documents/mtDNA/mtDNA/Data/1214CheckSamePed","/","c",i,"p",j) 
         if (!dir.exists(target_folder)){
             dir.create(target_folder)
         }
@@ -18,7 +18,7 @@ for (i in 1:3){
                   Ngen = df_ped$G[j],
                   sexR = df_ped$p[j],
                   marR = df_ped$r[j],
-                  n = 30000,
+                  n = 5000,
                   path_results = target_folder)
         print(Sys.time())
         cat(paste("end c",i,"p",j, "\n"))
