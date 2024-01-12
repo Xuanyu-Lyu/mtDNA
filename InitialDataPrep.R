@@ -11,7 +11,7 @@ for(script in r_scripts) {
 
 df_ped <- read.csv(paste0(path_base, "Pedigrees_a2mt2.csv"))
 df_var <- read.csv(paste0(path_base, "VarianceComb_a2mt2.csv"))
-
+df_var_full = read.csv(paste0(path_base, "VarianceComb_full.csv"))
 # set.seed(62)
 
 # l_ped <- list()

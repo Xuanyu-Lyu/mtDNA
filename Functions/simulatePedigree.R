@@ -35,6 +35,12 @@ simulatePedigree <- function(kpc = 3,
                              balancedSex = TRUE,
                              balancedMar = TRUE,
                              verbose = FALSE) {
+  # a supporting function 
+  resample = function(x, ...){
+    #print(length(x))
+    if(length(x) == 0) return(NA_integer_)
+    x[sample.int(length(x), ...)]
+    } 
   # SexRatio: ratio of male over female in the offspring setting; used in the between generation combinations
   SexRatio <- sexR / (1 - sexR)
 
@@ -389,12 +395,16 @@ simulatePedigree <- function(kpc = 3,
 
         # the length of IdMa and IdPa can be longer than the vector of offspring, so truncated it
         ### making sure sampling out the single people instead of couples
-        if (length(IdPa) - length(IdOfp) > 0) {
+        if (length(IdPa) - length(IdOfp) > 0 ) {
+          #cat("length of IdPa", length(IdPa), "\n")
           IdRm <- sample.int(length(IdPa), size = length(IdPa) - length(IdOfp))
           IdPa <- IdPa[-IdRm]
           IdMa <- IdMa[-IdRm]
         } else if (length(IdPa) - length(IdOfp) < 0) {
-          IdRm <- sample(IdSingle, size = length(IdOfp) - length(IdPa))
+          #cat("length of IdOfp", length(IdOfp), "\n")
+          #cat("length of IdPa", length(IdPa), "\n")
+          #cat("length of IdSingle", length(IdMa), "\n")
+          IdRm <- resample(IdSingle, size = length(IdOfp) - length(IdPa))
 
           IdOfp <- IdOfp[!(IdOfp %in% IdRm)]
         }
@@ -431,6 +441,12 @@ simulatePedigree <- function(kpc = 3,
 
   # connect the detached members
   df_Fam[is.na(df_Fam$momID) & is.na(df_Fam$dadID) & df_Fam$gen > 1, ]
+  # if the sex rate is .5, make there is a 50% chance to change male to female and female to male
+  if (sexR == .5 & runif(1) > .5) {
+    df_Fam$sex[df_Fam$sex == "M"] <- "F1"
+    df_Fam$sex[df_Fam$sex == "F"] <- "M"
+    df_Fam$sex[df_Fam$sex == "F1"] <- "F"
+  }
   # print(df_Fam)
   return(df_Fam)
 }
