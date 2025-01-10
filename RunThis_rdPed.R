@@ -3,35 +3,36 @@
 source("/Users/lyux20/Library/CloudStorage/OneDrive-UCB-O365/Documents/mtDNA/mtDNA/InitialDataPrep.R")
 
 
-# # impact of mutation
-# for (i in 2){
-#     for(j in 12){
-#         print(Sys.time())
-#         cat(paste("start c",i,"p",j, "\n"))
-#         target_folder <- paste0("/Users/lyux20/Library/CloudStorage/OneDrive-UCB-O365/Documents/mtDNA/mtDNA/Data/Mutation","/","c",i,"p",j) 
-#         if (!dir.exists(target_folder)){
-#             dir.create(target_folder)}
-#         for(loop in 1:100){
-#             target_folder_loop <- paste0(target_folder,"/","loop",loop)
-#             if (!dir.exists(target_folder_loop)){
-#             dir.create(target_folder_loop)}
-#             cat(paste("running loop",loop, "\n"))
-#             RunSim_Mutation(
-#                   Var = df_var_full[i,],
-#                   kpc = df_ped$k[j],
-#                   Ngen = df_ped$G[j],
-#                   sexR = df_ped$p[j],
-#                   marR = df_ped$r[j],
-#                   n = 20000,
-#                   path_results = target_folder_loop,
-#                   gen_drop = 2,
-#                   sex_drop = "F",
-#                   n_drop = 1)
-#         }      
-#         print(Sys.time())
-#         cat(paste("end c",i,"p",j, "\n"))
-#     }
-# }
+
+# impact of mutation
+for (i in 2){
+    for(j in 12){
+        print(Sys.time())
+        cat(paste("start c",i,"p",j, "\n"))
+        target_folder <- paste0("/Users/lyux20/Library/CloudStorage/OneDrive-UCB-O365/Documents/mtDNA/mtDNA/Data/Mutation","/","c",i,"p",j) 
+        if (!dir.exists(target_folder)){
+            dir.create(target_folder)}
+        for(loop in 1:500){
+            target_folder_loop <- paste0(target_folder,"/","loop",loop)
+            if (!dir.exists(target_folder_loop)){
+            dir.create(target_folder_loop)}
+            cat(paste("running loop",loop, "\n"))
+            RunSim_Mutation(
+                  Var = df_var_full[i,],
+                  kpc = df_ped$k[j],
+                  Ngen = df_ped$G[j],
+                  sexR = df_ped$p[j],
+                  marR = df_ped$r[j],
+                  n = 20000,
+                  path_results = target_folder_loop,
+                  gen_drop = 2,
+                  sex_drop = "F",
+                  n_drop = 1)
+        }      
+        print(Sys.time())
+        cat(paste("end c",i,"p",j, "\n"))
+    }
+}
 
 # impact of missing links
 for (i in 2){
@@ -41,7 +42,7 @@ for (i in 2){
         target_folder <- paste0("/Users/lyux20/Library/CloudStorage/OneDrive-UCB-O365/Documents/mtDNA/mtDNA/Data/MissingLink","/","c",i,"p",j) 
         if (!dir.exists(target_folder)){
             dir.create(target_folder)}
-        for(loop in 1:50){
+        for(loop in 101:500){
             target_folder_loop <- paste0(target_folder,"/","loop",loop)
             if (!dir.exists(target_folder_loop)){
             dir.create(target_folder_loop)}
@@ -65,7 +66,7 @@ for (i in 2){
 
 # Power Run for simplified model
 for (i in 1:5){
-    for(j in 1:6){
+    for(j in 1:5){
         print(Sys.time())
         cat(paste("start c",i,"p",j, "\n"))
         target_folder <- paste0("/Users/lyux20/Library/CloudStorage/OneDrive-UCB-O365/Documents/mtDNA/mtDNA/Data/20240112PowerRun","/","c",i,"p",j) 
@@ -88,8 +89,8 @@ for (i in 1:5){
 }
 
 # Power Run for full model
-for (i in c(1:5,15,16)){
-    for(j in c(1:5)){
+for (i in c(1:5)){
+    for(j in c(6:9)){
         print(Sys.time())
         cat(paste("start c",i,"p",j, "\n"))
         target_folder <- paste0("/Users/lyux20/Library/CloudStorage/OneDrive-UCB-O365/Documents/mtDNA/mtDNA/Data/20240213PowerRunFull","/","c",i,"p",j) 
@@ -106,6 +107,69 @@ for (i in c(1:5,15,16)){
                   marR = df_ped$r[j],
                   n = 40000,
                   path_results = target_folder)
+        print(Sys.time())
+        cat(paste("end c",i,"p",j, "\n"))
+    }
+}
+
+# Power Run for full model, but using the average  lambda across 50 smaller samples,
+# power run 17 , 6 for alex's paper
+for (i in c(1:5)){
+    for(j in c(1:5)){
+        print(Sys.time())
+        cat(paste("start c",i,"p",j, "\n"))
+        target_folder <- paste0("/Users/lyux20/Library/CloudStorage/OneDrive-UCB-O365/Documents/mtDNA/mtDNA/Data/20240213PowerRunFull","/","c",i,"p",j) 
+        if (!dir.exists(target_folder)){
+            dir.create(target_folder)
+        }
+        for(loop in 1:100){
+            target_folder_loop <- paste0(target_folder,"/","loop",loop)
+            if (!dir.exists(target_folder_loop)){
+            dir.create(target_folder_loop)}
+            cat(paste("running loop",loop, "\n"))
+            RunSim_rd_full(Var = df_var_full[i,],
+            kpc = df_ped$k[j],
+            Ngen = df_ped$G[j],
+            sexR = df_ped$p[j],
+            marR = df_ped$r[j],
+            n = 10000,
+            path_results = target_folder_loop)
+            print(Sys.time())
+            cat(paste("end c",i,"p",j,"loop", loop, "\n"))
+        }      
+        print(Sys.time())
+        cat(paste("end c",i,"p",j, "\n"))
+    }
+        # do.call(RunSim, as.list(df_var[i,],
+        #                         paste0("ped",j),
+        #                         target_folder))
+
+
+    
+}
+
+# check type I error rate for mt2 and at2 in model 1 and check the dropping ce in model 2
+for (i in 2){
+    for(j in 12){
+        print(Sys.time())
+        cat(paste("start c",i,"p",j, "\n"))
+        target_folder <- paste0("/Users/lyux20/Library/CloudStorage/OneDrive-UCB-O365/Documents/mtDNA/mtDNA/Data/20240219TypeIErr","/","c",i,"p",j) 
+        if (!dir.exists(target_folder)){
+            dir.create(target_folder)}
+        for(loop in 228:350){
+            target_folder_loop <- paste0(target_folder,"/","loop",loop)
+            if (!dir.exists(target_folder_loop)){
+            dir.create(target_folder_loop)}
+            cat(paste("running loop",loop, "\n"))
+            RunSim_TypeIErr(
+                  Var = df_var_full[i,],
+                  kpc = df_ped$k[j],
+                  Ngen = df_ped$G[j],
+                  sexR = df_ped$p[j],
+                  marR = df_ped$r[j],
+                  n = 20000,
+                  path_results = target_folder_loop)
+        }      
         print(Sys.time())
         cat(paste("end c",i,"p",j, "\n"))
     }

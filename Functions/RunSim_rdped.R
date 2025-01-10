@@ -148,13 +148,13 @@ RunSim_rd <- function(Var, kpc, Ngen, sexR, marR, n=10000, path_results){
     ## the full model
     Model1a <- mxModel(
         "ModelOne",
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ad2*totalVar, labels = "vad", name = "Vad", lbound = 1e-10),
-        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = dd2*totalVar, labels = "vdd", name = "Vdd", lbound = 1e-10),
-        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = cn2*totalVar, labels = "vcn", name = "Vcn", lbound = 1e-10),
-        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ce2*totalVar, labels = "vce", name = "Vce", lbound = 1e-10),
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = mt2*totalVar, labels = "vmt", name = "Vmt", lbound = 1e-10),
-        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = am2*totalVar, labels = "vam", name = "Vam", lbound = 1e-10),
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ee2*totalVar, labels = "ver", name = "Ver", lbound = 1e-10)
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ad2*totalVar, labels = "vad", name = "Vad", lbound = bound),
+        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = dd2*totalVar, labels = "vdd", name = "Vdd", lbound = bound),
+        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = cn2*totalVar, labels = "vcn", name = "Vcn", lbound = bound),
+        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ce2*totalVar, labels = "vce", name = "Vce", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = mt2*totalVar, labels = "vmt", name = "Vmt", lbound = bound),
+        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = am2*totalVar, labels = "vam", name = "Vam", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ee2*totalVar, labels = "ver", name = "Ver", lbound = bound)
     )
     
     container <- mxModel('Model1b', Model1a, modList, mxFitFunctionMultigroup(modNames))
@@ -173,13 +173,13 @@ RunSim_rd <- function(Var, kpc, Ngen, sexR, marR, n=10000, path_results){
     
     Model2a <- mxModel(
         "ModelTwo",
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ad2*totalVar, labels = "vad", name = "Vad", lbound = 1e-10),
-        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = dd2*totalVar, labels = "vdd", name = "Vdd", lbound = 1e-10),
-        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = cn2*totalVar, labels = "vcn", name = "Vcn", lbound = 1e-10),
-        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ce2*totalVar, labels = "vce", name = "Vce", lbound = 1e-10),
-        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = mt2*totalVar, labels = "vmt", name = "Vmt", lbound = 1e-10),
-        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = am2*totalVar, labels = "vam", name = "Vam", lbound = 1e-10),
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ee2*totalVar, labels = "ver", name = "Ver", lbound = 1e-10)
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ad2*totalVar, labels = "vad", name = "Vad", lbound = bound),
+        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = dd2*totalVar, labels = "vdd", name = "Vdd", lbound = bound),
+        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = cn2*totalVar, labels = "vcn", name = "Vcn", lbound = bound),
+        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ce2*totalVar, labels = "vce", name = "Vce", lbound = bound),
+        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = mt2*totalVar, labels = "vmt", name = "Vmt", lbound = bound),
+        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = am2*totalVar, labels = "vam", name = "Vam", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ee2*totalVar, labels = "ver", name = "Ver", lbound = bound)
     )
     
     container2 <- mxModel('Model2b', Model2a, modList2, mxFitFunctionMultigroup(modNames2))
@@ -196,13 +196,13 @@ RunSim_rd <- function(Var, kpc, Ngen, sexR, marR, n=10000, path_results){
     
     Model3a <- mxModel(
         "ModelThree",
-        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ad2*totalVar, labels = "vad", name = "Vad", lbound = 1e-10),
-        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = dd2*totalVar, labels = "vdd", name = "Vdd", lbound = 1e-10),
-        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = cn2*totalVar, labels = "vcn", name = "Vcn", lbound = 1e-10),
-        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ce2*totalVar, labels = "vce", name = "Vce", lbound = 1e-10),
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = mt2*totalVar, labels = "vmt", name = "Vmt", lbound = 1e-10),
-        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = am2*totalVar, labels = "vam", name = "Vam", lbound = 1e-10),
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ee2*totalVar, labels = "ver", name = "Ver", lbound = 1e-10)
+        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ad2*totalVar, labels = "vad", name = "Vad", lbound = bound),
+        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = dd2*totalVar, labels = "vdd", name = "Vdd", lbound = bound),
+        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = cn2*totalVar, labels = "vcn", name = "Vcn", lbound = bound),
+        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ce2*totalVar, labels = "vce", name = "Vce", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = mt2*totalVar, labels = "vmt", name = "Vmt", lbound = bound),
+        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = am2*totalVar, labels = "vam", name = "Vam", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ee2*totalVar, labels = "ver", name = "Ver", lbound = bound)
     )
     
     container3 <- mxModel('Model3b', Model3a, modList3, mxFitFunctionMultigroup(modNames3))
@@ -234,6 +234,7 @@ RunSim_rd_full <- function(Var, kpc, Ngen, sexR, marR, n=10000, path_results){
     am2 <- Var[[7]]
     ee2 <- Var[[8]]
     
+    bound <- -1e2
     numfam <- round(n/famSizeCal(kpc,Ngen,marR))
     
     p.list <- list()
@@ -286,7 +287,7 @@ RunSim_rd_full <- function(Var, kpc, Ngen, sexR, marR, n=10000, path_results){
                                    mxMatrix("Iden", nrow=fsize, ncol=fsize, name="I"), 
                                    mxMatrix("Unit", nrow=fsize, ncol=fsize, name='U'),
                                    mxMatrix("Symm", nrow=fsize, ncol=fsize, values=Addmat, name="A"), 
-                                   #mxMatrix("Symm", nrow=fsize, ncol=fsize, values=Dmgmat, name="D"), 
+                                   mxMatrix("Symm", nrow=fsize, ncol=fsize, values=Dmgmat, name="D"), 
                                    mxMatrix("Symm", nrow=fsize, ncol=fsize, values=Nucmat, name="Cn"), 
                                    mxMatrix("Symm", nrow=fsize, ncol=fsize, values=Extmat, name="Ce"), 
                                    mxMatrix("Symm", nrow=fsize, ncol=fsize, values=Amimat, name="Am"), 
@@ -295,7 +296,7 @@ RunSim_rd_full <- function(Var, kpc, Ngen, sexR, marR, n=10000, path_results){
                                    mxMatrix('Full', nrow=1, ncol=fsize, name='M', free=TRUE, labels='meanLI',
                                             dimnames=list(NULL, ytemp)),
                                    mxAlgebra ((A %x% ModelOne.Vad) 
-                                              #+ (D %x% ModelOne.Vdd) 
+                                              + (D %x% ModelOne.Vdd) 
                                               + (Cn %x% ModelOne.Vcn) 
                                               + (U %x% ModelOne.Vce) 
                                               + (Mt %x% ModelOne.Vmt) 
@@ -313,7 +314,7 @@ RunSim_rd_full <- function(Var, kpc, Ngen, sexR, marR, n=10000, path_results){
                                      mxMatrix("Iden", nrow=fsize2, ncol=fsize2, name="I"), 
                                      mxMatrix("Unit", nrow=fsize2, ncol=fsize2, name='U'),
                                      mxMatrix("Symm", nrow=fsize2, ncol=fsize2, values=Addmat, name="A"), 
-                                     #mxMatrix("Symm", nrow=fsize2, ncol=fsize2, values=Dmgmat, name="D"), 
+                                     mxMatrix("Symm", nrow=fsize2, ncol=fsize2, values=Dmgmat, name="D"), 
                                      mxMatrix("Symm", nrow=fsize2, ncol=fsize2, values=Nucmat, name="Cn"), 
                                      mxMatrix("Symm", nrow=fsize2, ncol=fsize2, values=Extmat, name="Ce"), 
                                      #mxMatrix("Symm", nrow=fsize2, ncol=fsize2, values=Amimat, name="Am"), 
@@ -322,7 +323,7 @@ RunSim_rd_full <- function(Var, kpc, Ngen, sexR, marR, n=10000, path_results){
                                      mxMatrix('Full', nrow=1, ncol=fsize2, name='M', free=TRUE, labels='meanLI',
                                               dimnames=list(NULL, ytemp2)),
                                      mxAlgebra ((A %x% ModelTwo.Vad) 
-                                                #+ (D %x% ModelTwo.Vdd) 
+                                                + (D %x% ModelTwo.Vdd) 
                                                  + (Cn %x% ModelTwo.Vcn) 
                                                 + (U %x% ModelTwo.Vce) 
                                                 #+ (Mt %x% ModelTwo.Vmt) 
@@ -340,7 +341,7 @@ RunSim_rd_full <- function(Var, kpc, Ngen, sexR, marR, n=10000, path_results){
                                      mxMatrix("Iden", nrow=fsize3, ncol=fsize3, name="I"), 
                                      #mxMatrix("Unit", nrow=fsize3, ncol=fsize3, name='U'),
                                      mxMatrix("Symm", nrow=fsize3, ncol=fsize3, values=Addmat, name="A"), 
-                                     #mxMatrix("Symm", nrow=fsize3, ncol=fsize3, values=Dmgmat, name="D"), 
+                                     mxMatrix("Symm", nrow=fsize3, ncol=fsize3, values=Dmgmat, name="D"), 
                                      mxMatrix("Symm", nrow=fsize3, ncol=fsize3, values=Nucmat, name="Cn"), 
                                      #mxMatrix("Symm", nrow=fsize3, ncol=fsize3, values=Extmat, name="Ce"), 
                                      mxMatrix("Symm", nrow=fsize3, ncol=fsize3, values=Amimat, name="Am"), 
@@ -349,7 +350,7 @@ RunSim_rd_full <- function(Var, kpc, Ngen, sexR, marR, n=10000, path_results){
                                      mxMatrix('Full', nrow=1, ncol=fsize3, name='M', free=TRUE, labels='meanLI',
                                               dimnames=list(NULL, ytemp3)),
                                      mxAlgebra ((A %x% ModelThree.Vad) 
-                                                #+ (D %x% ModelThree.Vdd) 
+                                                + (D %x% ModelThree.Vdd) 
                                                 + (Cn %x% ModelThree.Vcn) 
                                                 #+ (U %x% ModelThree.Vce) 
                                                  +(Mt %x% ModelThree.Vmt) 
@@ -371,13 +372,13 @@ RunSim_rd_full <- function(Var, kpc, Ngen, sexR, marR, n=10000, path_results){
     ## the full model
     Model1a <- mxModel(
         "ModelOne",
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ad2*totalVar, labels = "vad", name = "Vad", lbound = 1e-10),
-        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = dd2*totalVar, labels = "vdd", name = "Vdd", lbound = 1e-10),
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = cn2*totalVar, labels = "vcn", name = "Vcn", lbound = 1e-10),
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ce2*totalVar, labels = "vce", name = "Vce", lbound = 1e-10),
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = mt2*totalVar, labels = "vmt", name = "Vmt", lbound = 1e-10),
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = am2*totalVar, labels = "vam", name = "Vam", lbound = 1e-10),
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ee2*totalVar, labels = "ver", name = "Ver", lbound = 1e-10)
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ad2*totalVar, labels = "vad", name = "Vad", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = dd2*totalVar, labels = "vdd", name = "Vdd", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = cn2*totalVar, labels = "vcn", name = "Vcn", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ce2*totalVar, labels = "vce", name = "Vce", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = mt2*totalVar, labels = "vmt", name = "Vmt", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = am2*totalVar, labels = "vam", name = "Vam", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ee2*totalVar, labels = "ver", name = "Ver", lbound = bound)
     )
     
     container <- mxModel('Model1b', Model1a, modList, mxFitFunctionMultigroup(modNames))
@@ -396,13 +397,13 @@ RunSim_rd_full <- function(Var, kpc, Ngen, sexR, marR, n=10000, path_results){
     
     Model2a <- mxModel(
         "ModelTwo",
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ad2*totalVar, labels = "vad", name = "Vad", lbound = 1e-10),
-        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = dd2*totalVar, labels = "vdd", name = "Vdd", lbound = 1e-10),
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = cn2*totalVar, labels = "vcn", name = "Vcn", lbound = 1e-10),
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ce2*totalVar, labels = "vce", name = "Vce", lbound = 1e-10),
-        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = mt2*totalVar, labels = "vmt", name = "Vmt", lbound = 1e-10),
-        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = am2*totalVar, labels = "vam", name = "Vam", lbound = 1e-10),
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ee2*totalVar, labels = "ver", name = "Ver", lbound = 1e-10)
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ad2*totalVar, labels = "vad", name = "Vad", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = dd2*totalVar, labels = "vdd", name = "Vdd", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = cn2*totalVar, labels = "vcn", name = "Vcn", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ce2*totalVar, labels = "vce", name = "Vce", lbound = bound),
+        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = mt2*totalVar, labels = "vmt", name = "Vmt", lbound = bound),
+        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = am2*totalVar, labels = "vam", name = "Vam", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ee2*totalVar, labels = "ver", name = "Ver", lbound = bound)
     )
     
     container2 <- mxModel('Model2b', Model2a, modList2, mxFitFunctionMultigroup(modNames2))
@@ -419,13 +420,13 @@ RunSim_rd_full <- function(Var, kpc, Ngen, sexR, marR, n=10000, path_results){
     
     Model3a <- mxModel(
         "ModelThree",
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ad2*totalVar, labels = "vad", name = "Vad", lbound = 1e-10),
-        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = dd2*totalVar, labels = "vdd", name = "Vdd", lbound = 1e-10),
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = cn2*totalVar, labels = "vcn", name = "Vcn", lbound = 1e-10),
-        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ce2*totalVar, labels = "vce", name = "Vce", lbound = 1e-10),
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = mt2*totalVar, labels = "vmt", name = "Vmt", lbound = 1e-10),
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = am2*totalVar, labels = "vam", name = "Vam", lbound = 1e-10),
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ee2*totalVar, labels = "ver", name = "Ver", lbound = 1e-10)
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ad2*totalVar, labels = "vad", name = "Vad", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = dd2*totalVar, labels = "vdd", name = "Vdd", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = cn2*totalVar, labels = "vcn", name = "Vcn", lbound = bound),
+        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ce2*totalVar, labels = "vce", name = "Vce", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = mt2*totalVar, labels = "vmt", name = "Vmt", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = am2*totalVar, labels = "vam", name = "Vam", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ee2*totalVar, labels = "ver", name = "Ver", lbound = bound)
     )
     
     container3 <- mxModel('Model3b', Model3a, modList3, mxFitFunctionMultigroup(modNames3))
@@ -449,6 +450,7 @@ RunSim_Mutation = function(Var, kpc, Ngen, sexR, marR, n=10000, path_results, ge
     library(OpenMx)
     library(mvtnorm)
     #Var Comb
+    bound <- -1e2
     ad2 <- Var[[2]]
     cn2 <- Var[[3]]
     ce2 <- Var[[4]]
@@ -580,13 +582,13 @@ RunSim_Mutation = function(Var, kpc, Ngen, sexR, marR, n=10000, path_results, ge
     ## the misspecified model
     Model1a <- mxModel(
         "ModelOne",
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ad2*totalVar, labels = "vad", name = "Vad", lbound = 1e-10),
-        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = dd2*totalVar, labels = "vdd", name = "Vdd", lbound = 1e-10),
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = cn2*totalVar, labels = "vcn", name = "Vcn", lbound = 1e-10),
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ce2*totalVar, labels = "vce", name = "Vce", lbound = 1e-10),
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = mt2*totalVar, labels = "vmt", name = "Vmt", lbound = 1e-10),
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = am2*totalVar, labels = "vam", name = "Vam", lbound = 1e-10),
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ee2*totalVar, labels = "ver", name = "Ver", lbound = 1e-10)
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ad2*totalVar, labels = "vad", name = "Vad", lbound = bound),
+        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = dd2*totalVar, labels = "vdd", name = "Vdd", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = cn2*totalVar, labels = "vcn", name = "Vcn", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ce2*totalVar, labels = "vce", name = "Vce", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = mt2*totalVar, labels = "vmt", name = "Vmt", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = am2*totalVar, labels = "vam", name = "Vam", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ee2*totalVar, labels = "ver", name = "Ver", lbound = bound)
     )
     
     container <- mxModel('Model1b', Model1a, modList, mxFitFunctionMultigroup(modNames))
@@ -602,13 +604,13 @@ RunSim_Mutation = function(Var, kpc, Ngen, sexR, marR, n=10000, path_results, ge
     
     Model2a <- mxModel(
         "ModelTwo",
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ad2*totalVar, labels = "vad", name = "Vad", lbound = 1e-10),
-        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = dd2*totalVar, labels = "vdd", name = "Vdd", lbound = 1e-10),
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = cn2*totalVar, labels = "vcn", name = "Vcn", lbound = 1e-10),
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ce2*totalVar, labels = "vce", name = "Vce", lbound = 1e-10),
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = mt2*totalVar, labels = "vmt", name = "Vmt", lbound = 1e-10),
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = am2*totalVar, labels = "vam", name = "Vam", lbound = 1e-10),
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ee2*totalVar, labels = "ver", name = "Ver", lbound = 1e-10)
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ad2*totalVar, labels = "vad", name = "Vad", lbound = bound),
+        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = dd2*totalVar, labels = "vdd", name = "Vdd", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = cn2*totalVar, labels = "vcn", name = "Vcn", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ce2*totalVar, labels = "vce", name = "Vce", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = mt2*totalVar, labels = "vmt", name = "Vmt", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = am2*totalVar, labels = "vam", name = "Vam", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ee2*totalVar, labels = "ver", name = "Ver", lbound = bound)
     )
     
     container2 <- mxModel('Model2b', Model2a, modList2, mxFitFunctionMultigroup(modNames2))
@@ -631,6 +633,7 @@ RunSim_MissingLink = function(Var, kpc, Ngen, sexR, marR, n=10000, path_results,
     library(OpenMx)
     library(mvtnorm)
     #Var Comb
+    bound <- -1e2
     ad2 <- Var[[2]]
     cn2 <- Var[[3]]
     ce2 <- Var[[4]]
@@ -762,13 +765,13 @@ RunSim_MissingLink = function(Var, kpc, Ngen, sexR, marR, n=10000, path_results,
     ## the misspecified model
     Model1a <- mxModel(
         "ModelOne",
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ad2*totalVar, labels = "vad", name = "Vad", lbound = 1e-10),
-        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = dd2*totalVar, labels = "vdd", name = "Vdd", lbound = 1e-10),
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = cn2*totalVar, labels = "vcn", name = "Vcn", lbound = 1e-10),
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ce2*totalVar, labels = "vce", name = "Vce", lbound = 1e-10),
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = mt2*totalVar, labels = "vmt", name = "Vmt", lbound = 1e-10),
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = am2*totalVar, labels = "vam", name = "Vam", lbound = 1e-10),
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ee2*totalVar, labels = "ver", name = "Ver", lbound = 1e-10)
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ad2*totalVar, labels = "vad", name = "Vad", lbound = bound),
+        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = dd2*totalVar, labels = "vdd", name = "Vdd", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = cn2*totalVar, labels = "vcn", name = "Vcn", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ce2*totalVar, labels = "vce", name = "Vce", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = mt2*totalVar, labels = "vmt", name = "Vmt", lbound = bound, ),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = am2*totalVar, labels = "vam", name = "Vam", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ee2*totalVar, labels = "ver", name = "Ver", lbound = bound)
     )
     
     container <- mxModel('Model1b', Model1a, modList, mxFitFunctionMultigroup(modNames))
@@ -784,13 +787,13 @@ RunSim_MissingLink = function(Var, kpc, Ngen, sexR, marR, n=10000, path_results,
     
     Model2a <- mxModel(
         "ModelTwo",
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ad2*totalVar, labels = "vad", name = "Vad", lbound = 1e-10),
-        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = dd2*totalVar, labels = "vdd", name = "Vdd", lbound = 1e-10),
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = cn2*totalVar, labels = "vcn", name = "Vcn", lbound = 1e-10),
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ce2*totalVar, labels = "vce", name = "Vce", lbound = 1e-10),
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = mt2*totalVar, labels = "vmt", name = "Vmt", lbound = 1e-10),
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = am2*totalVar, labels = "vam", name = "Vam", lbound = 1e-10),
-        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ee2*totalVar, labels = "ver", name = "Ver", lbound = 1e-10)
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ad2*totalVar, labels = "vad", name = "Vad", lbound = bound),
+        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = dd2*totalVar, labels = "vdd", name = "Vdd", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = cn2*totalVar, labels = "vcn", name = "Vcn", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ce2*totalVar, labels = "vce", name = "Vce", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = mt2*totalVar, labels = "vmt", name = "Vmt", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = am2*totalVar, labels = "vam", name = "Vam", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ee2*totalVar, labels = "ver", name = "Ver", lbound = bound)
     )
     
     container2 <- mxModel('Model2b', Model2a, modList2, mxFitFunctionMultigroup(modNames2))
@@ -809,3 +812,177 @@ RunSim_MissingLink = function(Var, kpc, Ngen, sexR, marR, n=10000, path_results,
      rm(list = ls())
 }
 
+
+RunSim_TypeIErr = function(Var, kpc, Ngen, sexR, marR, n=10000, path_results){
+    # model 1 is for the type I error analysis
+    # model 2 is for the dropping ce analysis
+    library(OpenMx)
+    library(mvtnorm)
+    bound <- -1e2
+    #Var Comb
+    ad2 <- Var[[2]]
+    cn2 <- Var[[3]]
+    ce2 <- Var[[4]]
+    mt2 <- Var[[5]]
+    dd2 <- Var[[6]]
+    am2 <- Var[[7]]
+    ee2 <- Var[[8]]
+    numfam <- round(n/famSizeCal(kpc,Ngen,marR))
+    p.list <- list()
+    p.list_missing <- list()
+    modList <- list()
+    modNames <- paste0("fam", 1:numfam)
+    modList2 <- list()
+    modNames2 <- paste0("fam", 1:numfam)
+    modList3 <- list()
+    modNames3 <- paste0("fam", 1:numfam)
+    dat <- data.frame()
+    dat2 <- data.frame()
+    for(i in 1: numfam){
+        #set.seed(i*11)
+        # Generate data and covariance matrices for the complete pedigree
+        ped_temp <- simulatePedigree(kpc = kpc,
+                                     Ngen = Ngen,
+                                     sexR = sexR,
+                                     marR = marR,
+                                     rd_kpc = TRUE)
+        #print(ped_temp)
+        assign(paste0("ped",i),
+               ped_temp)
+        p.list[[i]] <- ped_temp
+        names(p.list)[i] <- paste0("ped",i)
+        
+        Addmat <- as.matrix(ped2add(p.list[[i]], verbose = FALSE))
+        Nucmat <- ped2cn(p.list[[i]])
+        Extmat <- ped2ce(p.list[[i]])
+        Mtdmat <- ped2mt_v3(p.list[[i]])
+        Envmat <- diag(1,nrow = nrow(Addmat))
+        dimnames(Envmat) <- dimnames(Addmat)
+        Amimat <- Addmat*Mtdmat
+        Dmgmat <- Addmat*Addmat
+
+        ## generate data for type I error
+        sumCov <- ad2*Addmat + dd2*Addmat*Addmat + cn2*Nucmat + ce2*Extmat + 0*Mtdmat + 0*Addmat*Mtdmat + ee2*Envmat
+        #set.seed(i*11)
+        #print(class(numfam))
+        temp <- rmvnorm(1, sigma = sumCov)
+        #print(temp)
+        dat[i,1:ncol(Addmat)] <- as.double(temp)
+
+        ## generate data for not estimating ce
+        sumCov2 <- ad2*Addmat + dd2*Addmat*Addmat + cn2*Nucmat + ce2*Extmat + mt2*Mtdmat + am2*Addmat*Mtdmat + ee2*Envmat
+        #set.seed(i*11)
+        #print(class(numfam))
+        temp2 <- rmvnorm(1, sigma = sumCov2)
+        #print(temp)
+        dat2[i,1:ncol(Addmat)] <- as.double(temp2)
+
+        ytemp <- paste('S', rownames (Addmat))
+        fsize <- nrow(Addmat)
+        modList[[i]] <- mxModel(name=modNames[i],
+                                   mxMatrix("Iden", nrow=fsize, ncol=fsize, name="I"), 
+                                   mxMatrix("Unit", nrow=fsize, ncol=fsize, name='U'),
+                                   mxMatrix("Symm", nrow=fsize, ncol=fsize, values=Addmat, name="A"), 
+                                   #mxMatrix("Symm", nrow=fsize, ncol=fsize, values=Dmgmat, name="D"), 
+                                   mxMatrix("Symm", nrow=fsize, ncol=fsize, values=Nucmat, name="Cn"), 
+                                   #mxMatrix("Symm", nrow=fsize, ncol=fsize, values=Extmat, name="Ce"), 
+                                   mxMatrix("Symm", nrow=fsize, ncol=fsize, values=Amimat, name="Am"), 
+                                   mxMatrix("Symm", nrow=fsize, ncol=fsize, values=Mtdmat, name="Mt"),
+                                   mxData(observed = matrix(temp, nrow=1, dimnames=list(NULL, ytemp)), type="raw", sort=FALSE),
+                                   mxMatrix('Full', nrow=1, ncol=fsize, name='M', free=TRUE, labels='meanLI',
+                                            dimnames=list(NULL, ytemp)),
+                                   mxAlgebra ((A %x% ModelOne.Vad) 
+                                              #+ (D %x% ModelOne.Vdd) 
+                                              + (Cn %x% ModelOne.Vcn) 
+                                              + (U %x% ModelOne.Vce) 
+                                              + (Mt %x% ModelOne.Vmt) 
+                                              + (Am %x% ModelOne.Vam) 
+                                              + (I %x% ModelOne.Ver), 
+                                              name="V", dimnames=list(ytemp, ytemp)),
+                                   mxExpectationNormal(covariance='V', means='M'), 
+                                   mxFitFunctionML()
+        )
+        
+        
+        ytemp2 <- paste('S', rownames (Addmat))
+        fsize2 <- nrow(Addmat)
+        modList2[[i]] <- mxModel(name=modNames2[i],
+                                     mxMatrix("Iden", nrow=fsize2, ncol=fsize2, name="I"), 
+                                     #mxMatrix("Unit", nrow=fsize2, ncol=fsize2, name='U'),
+                                     mxMatrix("Symm", nrow=fsize2, ncol=fsize2, values=Addmat, name="A"), 
+                                     #mxMatrix("Symm", nrow=fsize2, ncol=fsize2, values=Dmgmat, name="D"), 
+                                     mxMatrix("Symm", nrow=fsize2, ncol=fsize2, values=Nucmat, name="Cn"), 
+                                     #mxMatrix("Symm", nrow=fsize2, ncol=fsize2, values=Extmat, name="Ce"), 
+                                     mxMatrix("Symm", nrow=fsize2, ncol=fsize2, values=Amimat, name="Am"), 
+                                     mxMatrix("Symm", nrow=fsize2, ncol=fsize2, values=Mtdmat, name="Mt"),
+                                     mxData(observed = matrix(temp2, nrow=1, dimnames=list(NULL, ytemp2)), type="raw", sort=FALSE),
+                                     mxMatrix('Full', nrow=1, ncol=fsize2, name='M', free=TRUE, labels='meanLI',
+                                              dimnames=list(NULL, ytemp2)),
+                                     mxAlgebra ((A %x% ModelTwo.Vad) 
+                                                #+ (D %x% ModelThree.Vdd) 
+                                                + (Cn %x% ModelTwo.Vcn) 
+                                                #+ (U %x% ModelTwo.Vce) 
+                                                + (Mt %x% ModelTwo.Vmt) 
+                                                + (Am %x% ModelTwo.Vam) 
+                                                + (I %x% ModelTwo.Ver), 
+                                                name="V", dimnames=list(ytemp2, ytemp2)),
+                                     mxExpectationNormal(covariance='V', means='M'), 
+                                     mxFitFunctionML()
+        )
+
+    }
+    
+    totalVar <- 1
+    totalMea <- 0
+    
+    ObjectsKeep <- as.character(ls())
+    # "l_ped","df_var","i","j","target_folder"
+    ## the misspecified model
+    Model1a <- mxModel(
+        "ModelOne",
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ad2*totalVar, labels = "vad", name = "Vad", lbound = bound),
+        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = dd2*totalVar, labels = "vdd", name = "Vdd", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = cn2*totalVar, labels = "vcn", name = "Vcn", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ce2*totalVar, labels = "vce", name = "Vce", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = mt2*totalVar, labels = "vmt", name = "Vmt", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = am2*totalVar, labels = "vam", name = "Vam", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ee2*totalVar, labels = "ver", name = "Ver", lbound = bound)
+    )
+    
+    container <- mxModel('Model1b', Model1a, modList, mxFitFunctionMultigroup(modNames))
+    container <- mxOption(container, 'Checkpoint Units', 'minutes')
+    container <- mxOption(container, 'Checkpoint Count', 1)
+    containerRun <- mxRun(container, intervals=FALSE, checkpoint=TRUE) 
+    
+    smr1 <- summary(containerRun)
+    save(list = ls(envir = environment()), file = paste0(path_results,"/model1.RData"), envir = environment())
+    rm(list = setdiff(ls(), c(ObjectsKeep, "ObjectsKeep", "smr1")))
+    
+    #### correct model
+    
+    Model2a <- mxModel(
+        "ModelTwo",
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ad2*totalVar, labels = "vad", name = "Vad", lbound = bound),
+        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = dd2*totalVar, labels = "vdd", name = "Vdd", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = cn2*totalVar, labels = "vcn", name = "Vcn", lbound = bound),
+        #mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ce2*totalVar, labels = "vce", name = "Vce", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = mt2*totalVar, labels = "vmt", name = "Vmt", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = am2*totalVar, labels = "vam", name = "Vam", lbound = bound),
+        mxMatrix(type = "Full", nrow = 1, ncol = 1, free = TRUE, values = ee2*totalVar, labels = "ver", name = "Ver", lbound = bound)
+    )
+    
+    container2 <- mxModel('Model2b', Model2a, modList2, mxFitFunctionMultigroup(modNames2))
+    container2 <- mxOption(container2, 'Checkpoint Units', 'minutes')
+    container2 <- mxOption(container2, 'Checkpoint Count', 1)
+    containerRun2 <- mxRun(container2, intervals=FALSE, checkpoint=TRUE) 
+    smr2 <- summary(containerRun2)
+    save(list = ls(envir = environment()), file = paste0(path_results,"/model2.RData"), envir = environment())
+    rm(list = setdiff(ls(), c(ObjectsKeep, "ObjectsKeep","path_results","smr1", "smr2")))
+    
+    #### save the summaries
+    rm(list = setdiff(ls(), c("path_results","smr1", "smr2")))
+     
+     save(list = ls(envir = environment()), file = paste0(path_results,"/modelSmr.RData"), envir = environment())
+ 
+     rm(list = ls())
+}
